@@ -1,8 +1,20 @@
 $(document).ready ->
-#  ---VARIABLES----
+#  ---VARIABLES AND FUNCTIONS----
 	callback = 0
+#				date_difference = data['time'] - Math.ceil((Date.now()-data['updated_at'])/1000) 
 	x = undefined
-#  ----------------
+
+	timeInterval = (time)->
+		x = setInterval((->
+			if time >= 0
+				$("#time").html "Time: " + time
+				console.log time
+				time -= 1
+				callback = time
+			return
+		), 1000, time)
+
+#  -----------------------------
 
 # IF STOPER STATE IS TRUE RUN STOPPER AUTOMATICALLY AFTER VIEW IS LOADED
 	$.ajax({
@@ -10,10 +22,11 @@ $(document).ready ->
 		dataType: "json"
 		success: (data)->
 			if data['state']==true
-				date_difference = Math.abs(Date.now() - (data['updated_at'])) / 36e5
-				alert(date_difference)
+				timeInterval data['time_difference']
 			return
 	})
+# ----------------------------------------------------------------------
+
 
 
 	$("#switch_on").click ->
@@ -22,15 +35,8 @@ $(document).ready ->
 			dataType: "json"
 			success: (data)->
 				$("#state").html "State: " + data['state']
-				time = data['time']
-				x = setInterval((->
-				  if time >= 0
-				    $("#time").html "Time: " + time
-				    time -= 1
-				    callback = time
-				  return
-				), 1000, time)
-		})
+				timeInterval data['time']
+	})
 	$("#switch_off").click ->
 		$.ajax({
 			url: '/timer/switch_off'
