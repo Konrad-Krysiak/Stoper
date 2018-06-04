@@ -1,0 +1,47 @@
+body {
+	font-family: "Ubuntu", sans-serif;
+	text-align: center;
+}
+
+
+.timer-bg{
+	border: 4px dotted orange;
+	width: 400px;
+	height: 300px;
+	margin: 200px auto;
+	display: flex;
+	flex-direction: column;
+	.monitor{
+		flex: 2;
+		color: black;
+		font-size: 35px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		& > * {
+			flex-basis: 35px;
+		}
+	}
+	.buttons{
+		flex: 3;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		button {
+			width: 70px;
+			height: 50px;
+			background: white;
+			border: 1px solid black;
+			transition: .5s;
+			border-radius: 1em;
+			font-size: 20px;
+			&:hover {
+				background:black;
+				color: #fff;
+				cursor: crosshair;
+			}
+		}
+	}
+
+}

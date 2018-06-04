@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Project</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+
+
+<div class="container">
+	<div class="row">
+		<div class="timer-bg">
+			<div class="monitor">
+				<div id="state">State: <%= @timer.state %></div>
+				<div id="time">Time: <%= @timer.time %></div>
+			</div>
+			<div class="buttons">
+				<button id="switch_on">ON</button>
+				<button id="switch_off">OFF</button>
+				<button id="increase_time">T+</button>
+				<button id="decrease_time">T-</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+		
+</body>
+</html>
