@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'timer/switch_on' => 'timers#switch_on'
   post 'timer/switch_off' => 'timers#switch_off'
+  post 'timer/UpToDate' => 'timers#UpToDate'
   get 'timer/increase_time' => 'timers#increase_time'
   get 'timer/decrease_time' => 'timers#decrease_time'
   get 'timer/on_render' => 'timers#on_render'

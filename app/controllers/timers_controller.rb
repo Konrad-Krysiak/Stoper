@@ -3,13 +3,22 @@ class TimersController < ApplicationController
   before_action :time_dif, only: [:index, :on_render]
 
   def index
-  end
+  end 
 
   def on_render
     if @timer.state == true
-      render json: { state: @timer.state, time: @timer.time, updated_at: @timer.updated_at.to_f*1000, time_difference: @time_difference, falseTimestamp: @timer.falseTimestamp}
+      render json: { state: @timer.state, time: @timer.time, time_difference: @time_difference}
     else
-      render json: {}
+      render json: { description: "Timer is turned off."}
+    end
+  end
+
+  def UpToDate
+    state = true? params[:state]
+    if @timer.state != state
+      render json: { changes_occurred: true, state: @timer.state, time: @timer.time}
+    else
+      render json: { changes_occurred: false }
     end
   end
 
@@ -18,17 +27,16 @@ class TimersController < ApplicationController
     render json: { state: @timer.state, time: @timer.time }
   end
   def switch_off
-    @timer.update(state: false, time: params[:callback_time].to_i, falseTimestamp: Time.new)
+    @timer.update(state: false, time: params[:callback_time])
     render json: { state: @timer.state }
   end
 
-  def increase_time
-    render json: {  }
+  def true?(obj)
+    obj.to_s == "true"
   end
-  def decrease_time
-    render json: {  }
-  end
-  
+
+
+
   private
     def set_timer
       @timer = Timer.find(1)

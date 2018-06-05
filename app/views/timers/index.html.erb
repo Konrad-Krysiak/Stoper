@@ -7,11 +7,12 @@
 </head>
 <body>
 
-
+ 
 
 
 <div class="container">
 	<div class="row">
+		<div class="responses"></div>
 		<div class="timer-bg">
 			<div class="monitor">
 				<div id="state">State: <%= @timer.state %></div>
@@ -20,13 +21,15 @@
 			<div class="buttons">
 				<button id="switch_on">ON</button>
 				<button id="switch_off">OFF</button>
-				<button id="increase_time">T+</button>
-				<button id="decrease_time">T-</button>
 			</div>
 		</div>
 	</div>
 </div>
 
+
+<script>
+	function getState(){return <%= @timer.state %>}
+</script>
 		
 </body>
 </html>
